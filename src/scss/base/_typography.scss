@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.is--bold{
+  font-weight: 700;
+}
+
+.is--light{
+  color: $grayish-blue;
+  font-weight: 500;
+}
+
+.has--no-margin{
+  margin-bottom:0;
+}

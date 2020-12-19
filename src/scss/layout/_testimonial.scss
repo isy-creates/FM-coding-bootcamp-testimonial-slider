@@ -1,0 +1,50 @@
+.testimonial {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+  background: url('/images/pattern-curve.svg') left bottom no-repeat;
+  padding:2.4rem 4rem;
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+
+  &__item{
+    width: 100%;
+    flex-shrink: 0;
+
+    &--is-invisible{
+      visibility: hidden;
+    }
+  }
+
+  &__text{
+    text-align: center;
+    position: relative;
+
+    &::before {
+      content:url('/images/pattern-quotes.svg');
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(.5);
+    }
+  }
+
+  &__image{
+    position: relative;
+    background: url('/images/pattern-bg.svg') center center no-repeat;
+    background-size: contain;
+    padding: 5.5rem 3.2rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6.3rem;
+  }
+
+  &__portrait{
+    border-radius: .5rem;
+    max-width: 25.6rem;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px  hsla(240, 38%, 20%, .1);
+    border: 1px solid #d9d9de;
+  }
+}

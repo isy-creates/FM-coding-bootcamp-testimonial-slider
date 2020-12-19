@@ -13,7 +13,8 @@ module.exports = {
   //where the output should be saved with specific filename
   output: {
     filename: 'bundled.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
 
   //plugins to load
@@ -58,6 +59,19 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               implementation: require( 'sass' )
+            }
+          }
+        ]
+      },
+      {
+        //Image Rules
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+              name: '[name].[ext]'
             }
           }
         ]

@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; 
+}
+
+body{
+  font-size: 1.8rem;
+  font-family: 'Inter', sans-serif;
+  line-height: 2.5rem;
+  font-weight: 400;
+  color: $dark-blue;
+}

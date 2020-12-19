@@ -1,8 +1,9 @@
-body {
-  background-color: gainsboro;
-}
+@import 'abstract/reset';
+@import 'abstract/variables';
 
-.test{
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
-  display: flex;
-}
+@import 'base/typography';
+@import 'base/base';
+
+@import 'components/navigation';
+
+@import 'layout/testimonial';
