@@ -77,6 +77,9 @@ module.exports = {
         ]
       },
       {
+        //inline dataurl rules
+      },
+      {
         // JS Rules
         test: /\.(js|jsx)$/,
         //Make sure to exclude files from the node_modules folder

@@ -5,3 +5,9 @@ $grayish-blue:    hsl(240, 18%, 77%);
 
 //Sizes
 $max-width:         1440px;
+
+//Breakpoints
+$screen-sm-min:     576px;
+$screen-md-min:     768px;
+$screen-lg-min:     992px;
+$screen-xl-min:     $max-width;

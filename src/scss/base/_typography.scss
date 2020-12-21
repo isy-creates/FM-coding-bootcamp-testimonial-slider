@@ -9,6 +9,36 @@
   font-weight: 500;
 }
 
-.has--no-margin{
-  margin-bottom:0;
+.quote {
+  padding: 2.8rem 1rem;
+  display: block;
+  text-align: center;
+
+  background: url('/images/pattern-quotes.svg') center top no-repeat;
+  background-size: 6.5rem;
+
+  @include lg {
+    text-align: left;
+    padding: 4.2rem 0 0;
+
+    background-position: 9.2rem top;
+    background-size: 9.9rem;
+  }
+}
+
+.quote-author {
+  text-align: center;
+  font-size: 1.8rem;
+
+  .is--light{
+    display: block;
+  }
+
+  @include lg {
+    text-align: left;
+
+    .is--light {
+      display: inline;
+    }
+  }
 }

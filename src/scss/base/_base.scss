@@ -10,8 +10,19 @@ html {
 
 body{
   font-size: 1.8rem;
+  line-height: 1.2;
   font-family: 'Inter', sans-serif;
   line-height: 2.5rem;
   font-weight: 400;
   color: $dark-blue;
+
+  @include lg {
+    font-size: 2.8rem;
+    line-height: 1.4;
+  }
+
+  @include xl {
+    font-size: 3.2rem;
+    line-height: 1.6;
+  }
 }

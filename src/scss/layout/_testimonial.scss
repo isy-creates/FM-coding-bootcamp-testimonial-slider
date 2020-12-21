@@ -1,50 +1,58 @@
 .testimonial {
-  width: 100%;
   max-width: $max-width;
   margin: 0 auto;
+  padding: 2.3rem 2.5rem;
+
   background: url('/images/pattern-curve.svg') left bottom no-repeat;
-  padding:2.4rem 4rem;
-  display: flex;
-  overflow-x: hidden;
-  scroll-snap-align: start;
-  scroll-behavior: smooth;
 
-  &__item{
-    width: 100%;
-    flex-shrink: 0;
-
-    &--is-invisible{
-      visibility: hidden;
-    }
+  @include lg {
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
   }
 
-  &__text{
-    text-align: center;
-    position: relative;
-
-    &::before {
-      content:url('/images/pattern-quotes.svg');
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(.5);
-    }
+  @include xl {
+    padding: 5rem 7.2rem;
   }
 
   &__image{
-    position: relative;
     background: url('/images/pattern-bg.svg') center center no-repeat;
     background-size: contain;
-    padding: 5.5rem 3.2rem;
+    margin-bottom: 3.2rem;
+    padding: 3rem;
+
     display: flex;
     justify-content: center;
-    margin-bottom: 6.3rem;
+
+    @include lg {
+      margin-bottom: 0;
+      grid-column: 2 / span 2;
+      grid-row: 1;
+      padding: 6.4rem 9.2rem 6.4rem 6.6rem;
+    }
   }
 
-  &__portrait{
-    border-radius: .5rem;
-    max-width: 25.6rem;
-    margin: 0 auto;
-    box-shadow: 0 2px 5px  hsla(240, 38%, 20%, .1);
-    border: 1px solid #d9d9de;
+  &__portrait {
+    width: 25.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 3px 5px rgba($dark-blue, .2);
+
+    @include lg {
+      width: 54.2rem;
+    }
+  }
+
+  &__quote{
+    
+    @include lg {
+      grid-column: 1 / span 2;
+      grid-row: 1;
+      padding-left: 6.2rem;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background-position: 9.6rem center;
+    }
   }
 }
