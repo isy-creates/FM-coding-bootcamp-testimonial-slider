@@ -2,23 +2,46 @@
   max-width: $max-width;
   margin: 0 auto;
   padding: 2.3rem 2.5rem;
+  display: flex;
+  overflow: hidden;
 
-  background: url('/images/pattern-curve.svg') left bottom no-repeat;
+  background-image:     url('/images/pattern-bg.svg'),
+                        url('/images/pattern-curve.svg');
+  background-position:  center 2.3rem,
+                        left bottom;
+  background-repeat:    no-repeat;
+  background-size:      auto 18vh,
+                        auto;
 
   @include lg {
-    display: grid;
-    grid-template-columns: 45% 10% 45%;
+    background-position:  85% 52%,
+                          left bottom;
+    background-size:      auto,
+                          auto;
   }
 
-  @include xl {
-    padding: 5rem 7.2rem;
+  &__item{
+
+    flex: 0 0 100%;
+    transition: transform .5s ease-in-out;
+
+    @include lg {
+      display: grid;
+      grid-template-columns: 45% 10% 45%;
+    }
+  
+    @include xl {
+      padding: 5rem 7.2rem;
+    }
+
   }
 
   &__image{
-    background: url('/images/pattern-bg.svg') center center no-repeat;
+    //background: url('/images/pattern-bg.svg') center center no-repeat;
     background-size: contain;
     margin-bottom: 3.2rem;
     padding: 3rem;
+    position: relative;
 
     display: flex;
     justify-content: center;
@@ -42,7 +65,8 @@
   }
 
   &__quote{
-    
+    position: relative;
+
     @include lg {
       grid-column: 1 / span 2;
       grid-row: 1;

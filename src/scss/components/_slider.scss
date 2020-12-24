@@ -1,0 +1,13 @@
+.slider {
+
+  overflow-x: hidden;
+
+  &__item{
+    &--is-invisible{
+      position: absolute;
+      right: -100%;
+      visibility: hidden;
+      height: 0;
+    }
+  }
+}
