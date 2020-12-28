@@ -95,12 +95,13 @@ class Slider {
   }
 
   hideShowArrows(index){
+    console.log(index);
+    console.log(this.sliderItems.length - 1);
     if (index === 0) {
       this.next.classList.remove(this.disabled);
       this.prev.classList.add(this.disabled);
-    } else if (index === 1) {
+    } else if (index === ( this.sliderItems.length - 1) ) {
       this.prev.classList.remove(this.disabled);
-    } else if (index === this.sliderItems.length - 1) {
       this.next.classList.add(this.disabled);
     } else {
       this.next.classList.remove(this.disabled);
