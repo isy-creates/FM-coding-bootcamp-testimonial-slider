@@ -2,13 +2,14 @@ class Slider {
   constructor() {
     this.slider = document.querySelector('.testimonial');
     this.sliderItems = Array.from(this.slider.children);
-    this.sliderWidth = this.sliderItems[0].getBoundingClientRect().width;
+    this.sliderWidth;
     
     this.next = document.querySelector('.navigation__icon--next');
     this.prev = document.querySelector('.navigation__icon--prev');
 
     this.imageContainer = document.querySelector('.testimonial__portrait');
     this.navigation = document.querySelector('.navigation');
+    this.buttons = Array.from(this.navigation.children);
 
     this.events();
     this.naviPosition();
@@ -81,8 +82,8 @@ class Slider {
 
     this.sliderItems.forEach( (el) =>{
 
-      //get current translatex position
-      el.style.transform = "translateX(" + currentPosition + "px)";
+    //get current translatex position
+    el.style.transform = "translateX(" + currentPosition + "px)";
 
     });
 
@@ -112,6 +113,27 @@ class Slider {
     let navigationHeight = this.navigation.getBoundingClientRect().height / 2;
     let position = imageHeight + imageFromTop - navigationHeight;
     this.navigation.style.top = position + "px";
+
+    //get new sliderWidth
+    this.sliderWidth = this.sliderItems[0].getBoundingClientRect().width
+
+    //remove every current-slide of the element and set everything back to slide 0
+    this.sliderItems.forEach( (el) => {
+      el.classList.remove('current-slide');
+      el.style.transform = "translateX(" + 0 + "px)";
+    });
+
+    //add current-slide back to the first element
+    this.sliderItems[0].classList.add('current-slide');
+
+    //remove disabled status of the buttons
+    this.buttons.forEach( (el) => {
+      el.classList.remove('navigation__icon--disabled');
+    });
+
+    //add disabled to prev-button
+    this.prev.classList.add('navigation__icon--disabled');
+    
   }
   
 }
