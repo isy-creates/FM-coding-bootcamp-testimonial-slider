@@ -42,14 +42,16 @@ class Slider {
     const currentSlide = document.querySelector('.current-slide');
     const nextSlide = currentSlide.nextElementSibling;
 
-    //get index of the next Element Sibling
+    //gets the index of the next Element Sibling
     const index = this.sliderItems.findIndex( item => item === nextSlide);
 
 
     //returns on the last item
     if (!nextSlide) return;
 
+    //Manage Arrow States
     this.hideShowArrows(index);
+    
     this.move(currentSlide, nextSlide, event);
     
   }
@@ -58,21 +60,20 @@ class Slider {
     const currentSlide = document.querySelector('.current-slide');
     const prevSlide = currentSlide.previousElementSibling;
 
-    //get index of the previous Element Sibling
+    //gets the index of the prev Element Sibling
     const index = this.sliderItems.findIndex( item => item === prevSlide);
 
     if (!prevSlide) return;
 
     this.hideShowArrows(index);
+
     this.move(currentSlide, prevSlide, event);
   }
 
   move(currentSlide, nextSlide, event){
     //get transform property to check the current value
     let style = currentSlide.style.transform;
-    //remove eveything from value except the number
     let translateX = style.replace(/[^-?\d.]/g, '');
-    //Transform string to number
     let translateX_num = +translateX;
     let currentPosition;
     
@@ -84,8 +85,8 @@ class Slider {
 
     this.sliderItems.forEach( (el) =>{
 
-      //get current translatex position
-      el.style.transform = `translateX(${currentPosition}px)`;
+    //get current translatex position
+    el.style.transform = "translateX(" + currentPosition + "px)";
 
     });
 
@@ -114,7 +115,7 @@ class Slider {
     let imageFromTop = this.imageContainer.getBoundingClientRect().top;
     let navigationHeight = this.navigation.getBoundingClientRect().height / 2;
     let position = imageHeight + imageFromTop - navigationHeight;
-    this.navigation.style.top = `${position}px`;
+    this.navigation.style.top = position + "px";
 
     //get new sliderWidth
     this.sliderWidth = this.sliderItems[0].getBoundingClientRect().width
@@ -122,11 +123,11 @@ class Slider {
     //remove every current-slide of the element and set everything back to slide 0
     this.sliderItems.forEach( (el) => {
       el.classList.remove(this.currentSlide);
-      el.style.transform = `translateX(${currentPosition}px)`;
+      el.style.transform = "translateX(" + 0 + "px)";
     });
 
     //add current-slide back to the first element
-    this.sliderItems[0].classList.add(this.currentSlide);
+    this.sliderItems[0].classList.add('current-slide');
 
     //remove disabled status of the buttons
     this.buttons.forEach( (el) => {
