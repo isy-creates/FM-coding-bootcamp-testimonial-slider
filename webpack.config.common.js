@@ -13,8 +13,8 @@ module.exports = {
   //where the output should be saved with specific filename
   output: {
     filename: 'bundled.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    path: path.resolve(__dirname, 'dist')
+    //publicPath: '/'
   },
 
   //plugins to load
