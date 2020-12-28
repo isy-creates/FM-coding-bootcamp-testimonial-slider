@@ -13,44 +13,98 @@ class Slider {
     this.events();
     this.naviPosition();
 
-
   }
 
-
   events(){
-    this.next.addEventListener('click', () => this.slideToRight() );
-    this.prev.addEventListener('click', () => this.slideToLeft() );
+    this.next.addEventListener('click', (e) => this.slideToRight(e) );
+    window.addEventListener('keydown', (e) => this.keyCheck(e));
+    this.prev.addEventListener('click', (e) => this.slideToLeft(e) );
     window.addEventListener('resize', () => this.naviPosition() );
   }
 
-  slideToRight(){
+  keyCheck(event){
+    console.log(event.key)
+    switch (event.key) {
+      case 'ArrowRight':
+        this.slideToRight(event);
+        break;
+      case 'ArrowLeft':
+        this.slideToLeft(event);
+        break;
+    }
+  }
+
+  slideToRight(event){
     const currentSlide = document.querySelector('.current-slide');
     const nextSlide = currentSlide.nextElementSibling;
 
-    let style = document.querySelector('.current-slide').style.transform;
-    let translateX = style.replace(/[^\d.]/g, '');
+    //gets the index of the next Element Sibling
+    const index = this.sliderItems.findIndex( item => item === nextSlide);
+
+
+    //returns on the last item
+    if (!nextSlide) return;
+
+    //Manage Arrow States
+    this.hideShowArrows(index);
+    
+    this.move(currentSlide, nextSlide, event);
+    
+  }
+
+  slideToLeft(event){
+    const currentSlide = document.querySelector('.current-slide');
+    const prevSlide = currentSlide.previousElementSibling;
+
+    //gets the index of the prev Element Sibling
+    const index = this.sliderItems.findIndex( item => item === prevSlide);
+
+    if (!prevSlide) return;
+
+    this.hideShowArrows(index);
+
+    this.move(currentSlide, prevSlide, event);
+  }
+
+  move(currentSlide, nextSlide, event){
+    //get transform property to check the current value
+    let style = currentSlide.style.transform;
+    let translateX = style.replace(/[^-?\d.]/g, '');
     let translateX_num = +translateX;
-      
-    let currentPosition = this.sliderWidth + translateX_num;
+    let currentPosition;
+    
+    if(event.target.classList.contains('navigation__icon--next') || event.key === 'ArrowRight' ) {
+      currentPosition = translateX_num - this.sliderWidth;
+    } else {
+      currentPosition = translateX_num + this.sliderWidth;
+    }
 
     this.sliderItems.forEach( (el) =>{
 
-      //get current translatex position || save current x position
-      el.style.transform = "translateX(-" + currentPosition + "px)";
+      //get current translatex position
+      el.style.transform = "translateX(" + currentPosition + "px)";
+
     });
 
     currentSlide.classList.remove('current-slide');
     nextSlide.classList.add('current-slide');
   }
 
-  slideToLeft(){
-    this.sliderWidth = this.sliderItems[0].getBoundingClientRect().width;
-
-    this.sliderItems.forEach( (el) => {
-      el.style.transform = "translateX(" + 0 + "px)";
-      
-    });
+  hideShowArrows(index){
+    if (index === 0) {
+      this.next.classList.remove('navigation__icon--disabled');
+      this.prev.classList.add('navigation__icon--disabled');
+    } else if (index === 1) {
+      this.prev.classList.remove('navigation__icon--disabled');
+    } else if (index === this.sliderItems.length - 1) {
+      this.next.classList.add('navigation__icon--disabled');
+    } else {
+      this.next.classList.remove('navigation__icon--disabled');
+      this.prev.classList.remove('navigation__icon--disabled');
+    }
   }
+
+
 
   naviPosition(){
     let imageHeight = this.imageContainer.getBoundingClientRect().height;

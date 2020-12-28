@@ -31,6 +31,14 @@
       background-color: $grayish-blue;
       cursor: pointer;
     }
+
+    &--disabled{
+      opacity: .3;
+      &:hover {
+        cursor: not-allowed;
+      }
+      
+    }
   }
 }
 
