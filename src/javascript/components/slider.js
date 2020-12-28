@@ -2,6 +2,7 @@ class Slider {
   constructor() {
     this.slider = document.querySelector('.testimonial');
     this.sliderItems = Array.from(this.slider.children);
+    this.sliderWidth = this.sliderItems[0].getBoundingClientRect().width;
     
     this.next = document.querySelector('.navigation__icon--next');
     this.prev = document.querySelector('.navigation__icon--prev');
@@ -11,10 +12,9 @@ class Slider {
 
     this.events();
     this.naviPosition();
-  }
 
-  //let the slider start from pos. 1, wenn empty
-  //indicate the end of the List
+
+  }
 
 
   events(){
@@ -24,12 +24,23 @@ class Slider {
   }
 
   slideToRight(){
-    this.sliderWidth = this.sliderItems[0].getBoundingClientRect().width;
+    const currentSlide = document.querySelector('.current-slide');
+    const nextSlide = currentSlide.nextElementSibling;
 
-    this.sliderItems.forEach( (el) => {
-      el.style.transform = "translateX(-" + this.sliderWidth + "px)";
+    let style = document.querySelector('.current-slide').style.transform;
+    let translateX = style.replace(/[^\d.]/g, '');
+    let translateX_num = +translateX;
       
+    let currentPosition = this.sliderWidth + translateX_num;
+
+    this.sliderItems.forEach( (el) =>{
+
+      //get current translatex position || save current x position
+      el.style.transform = "translateX(-" + currentPosition + "px)";
     });
+
+    currentSlide.classList.remove('current-slide');
+    nextSlide.classList.add('current-slide');
   }
 
   slideToLeft(){
